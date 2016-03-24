@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/python
 kfstring = "Wow Abba Wow"
 
 def p1(st):
