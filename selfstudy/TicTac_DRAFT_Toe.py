@@ -68,11 +68,12 @@ def win(start_board,winner):
     ]
     for sets in winner_board:
         win_lines = [check_board[x][y] for (x,y) in sets]
-        if win_lines == ['X','X','X']:
+        print(win_lines)
+        if len(set(win_lines)) == 1 and win_lines[0] == 'X':
             print('The winner is Player 1')
             winner = False
             exit()
-        elif win_lines == ['O','O','O']:
+        elif len(set(win_lines)) == 1 and win_lines[0] == 'O':
             print('The winner is Player 2')
             winner = False
             exit()
