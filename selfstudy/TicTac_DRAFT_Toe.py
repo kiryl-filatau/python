@@ -2,7 +2,7 @@
 #### FUNCTIONS ####
 
 
-# fix that board is shown after each step
+# to fix that board is shown after each step
 def display_board(board):
     print(' ' + board[6]+ ' | ' +board[7]+ ' | ' +board[8] + ' ')
     print('-----------')
@@ -62,7 +62,7 @@ def player_2(start_board):
         return False
     return start_board
 
-# fix draw and skip if no winner is possible
+# to fix draw and skip if no winner is possible
 
 def win(start_board,winner):
     check_board = [
