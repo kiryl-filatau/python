@@ -31,36 +31,34 @@ def player_number(order):
             else:
                 return ValueError
         except ValueError:
-            print('The value you entered is not a number in range from 1 to 9')
+            print('The value you entered is not a number')
             continue
         else:
             break
-    # while True:
-    #     try:
-    #         step in range(1,10)
-
-
-    # if step not in range(1,10):
-    #     return step
-    # else:
-    #     print('please enter number from 1 to 9')
     
-
 def player_1(start_board):
     step = player_number('1')
-    if start_board[step-1] == ' ':
-        start_board[step-1] = 'X'
+    if step in range(1,10):
+        if start_board[step-1] == ' ':
+            start_board[step-1] = 'X'
+        else:
+            print('This cell was already used')
+            return False
     else:
-        print('This cell was already used')
+        print('Value is out of range 1 to 9')
         return False
     return start_board
 
 def player_2(start_board):
     step = player_number('2')
-    if start_board[step-1] == ' ':
-        start_board[step-1] = 'O'
+    if step in range(1,10):
+        if start_board[step-1] == ' ':
+            start_board[step-1] = 'O'
+        else:
+            print('This cell was already used')
+            return False
     else:
-        print('This cell was already used')
+        print('Value is out of range 1 to 9')
         return False
     return start_board
 
