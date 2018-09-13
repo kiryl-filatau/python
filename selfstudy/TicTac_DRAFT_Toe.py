@@ -1,6 +1,8 @@
 #from IPython.display import clear_output
 #### FUNCTIONS ####
 
+
+# fix that board is shown after each step
 def display_board(board):
     print(' ' + board[6]+ ' | ' +board[7]+ ' | ' +board[8] + ' ')
     print('-----------')
@@ -59,6 +61,8 @@ def player_2(start_board):
         print('Value is out of range 1 to 9')
         return False
     return start_board
+
+# fix draw and skip if no winner is possible
 
 def win(start_board,winner):
     check_board = [
