@@ -20,8 +20,6 @@ def player_choice():
     return choice
 
 
-#fix order of the player
-#fix retry the function
 def player_number(order):
     while True:
         try:
@@ -70,8 +68,6 @@ def win(start_board,winner):
     ]
     for sets in winner_board:
         win_lines = [check_board[x][y] for (x,y) in sets]
-        # print(win_lines)
-        # print(check_board)
         if win_lines == ['X','X','X']:
             print('The winner is Player 1')
             winner = False
@@ -82,12 +78,11 @@ def win(start_board,winner):
             exit()
 
 #### VARIABLES ####
-# info_board = ['#','1','2','3','4','5','6','7','8','9']
-start_board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
+
 check_choise = True
-play = True
 first_player_step = True
 winner = True
+start_board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
 winner_board = (
     [[(x,y)for y in range(3)] for x in range(3)] +
     [[(x,y)for x in range(3)] for y in range(3)] + 
