@@ -62,7 +62,7 @@ def player_2(start_board):
         return False
     return start_board
 
-# to fix draw and skip if no winner is possible
+# skip if no winner is possible
 
 def win(start_board,winner):
     check_board = [
@@ -72,13 +72,18 @@ def win(start_board,winner):
     ]
     for sets in winner_board:
         win_lines = [check_board[x][y] for (x,y) in sets]
-        print(win_lines)
+        # print(win_lines)
         if len(set(win_lines)) == 1 and win_lines[0] == 'X':
             print('The winner is Player 1')
             winner = False
             exit()
         elif len(set(win_lines)) == 1 and win_lines[0] == 'O':
             print('The winner is Player 2')
+            winner = False
+            exit()
+    for sets in winner_board:
+        if ' ' not in start_board:
+            print('The winner is friendship')
             winner = False
             exit()
 
