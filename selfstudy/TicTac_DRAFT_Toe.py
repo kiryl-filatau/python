@@ -1,32 +1,49 @@
-#from IPython.display import clear_output
+from IPython.display import clear_output
+import os
+
 #### FUNCTIONS ####
 
 
 # to fix that board is shown after each step
-def display_board(board):
-    print(' ' + board[6]+ ' | ' +board[7]+ ' | ' +board[8] + ' ')
-    print('-----------')
-    print(' ' + board[3]+ ' | ' +board[4]+ ' | ' +board[5] + ' ')
-    print('-----------')
-    print(' ' + board[0]+ ' | ' +board[1]+ ' | ' +board[2] + ' ')
+def rules_func():
+    print('Here is TicTacToe game\n' 
+          'You can choose "X" or "O" to fil the table.\n'
+          'The winner is the player who will fill\n'
+          'the vertical or horisontal lines in the table\n'
+          'please enter numbers 1-9 according the positions\n'
+          'in the board:')
 
+def info_board_func(info_board):
+    display_board(info_board)
+
+def display_board(board):
+    print('          ' + board[6]+ ' | ' +board[7]+ ' | ' +board[8] + ' ')
+    print('         -----------')
+    print('          ' + board[3]+ ' | ' +board[4]+ ' | ' +board[5] + ' ')
+    print('         -----------')
+    print('          ' + board[0]+ ' | ' +board[1]+ ' | ' +board[2] + ' ')
 
 def player_choice():
     choice = input('select X or O: ')
+    clear_output()
+    os.system('clear')
     if choice.lower() == 'x':
         print(f'you choice is {choice.upper()} you will play as Player 1')
+        info_board_func(info_board)
     elif choice.lower() == 'o':
         print(f'you choice is {choice.upper()} you will play as Player 2')
+        info_board_func(info_board)
     else:
         print("you should choose only between X and O")
     return choice
-
 
 def player_number(order):
     while True:
         try:
             step = int(input(f'Player {order} could you please enter number from 1 to 9: '))
             if step in range(1,10):
+                clear_output()
+                os.system('clear')
                 return step
             else:
                 return ValueError
@@ -93,13 +110,17 @@ check_choise = True
 first_player_step = True
 winner = True
 start_board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
+info_board = ['1','2','3','4','5','6','7','8','9']
 winner_board = (
     [[(x,y)for y in range(3)] for x in range(3)] +
     [[(x,y)for x in range(3)] for y in range(3)] + 
     [[(d,d)for d in range(3)]] +
     [[(2-d,d)for d in range(3)]]
 )
+
 #### LOGIC ####
+rules_func()
+info_board_func(info_board)
 
 while check_choise:
     player_input = player_choice()
@@ -121,3 +142,8 @@ while winner:
             win(start_board,winner)
         break
     
+
+
+# clear_output()
+# os.system('cls' if os.name == 'nt' else 'clear')
+# os.system('clear')
