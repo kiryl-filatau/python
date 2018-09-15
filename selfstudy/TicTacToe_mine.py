@@ -22,16 +22,13 @@ def display_board(board):
 #random choice who will start
 def who_is_first(player1,player2):
     os.system('clear')
-    rules_func()
-    info_board_func(info_board)
-    player1 = input('could you please enter your name, one of you:  ')
-    player2 = input('another one: ')
     order = [player1,player2]
     player1 = random.choice(order)
     order.remove(player1)
     player2 = order[0]
     print(f'{player1} will play first and use "X" and {player2} will play second and use "O"')
-    return(player1,player2)
+    info_board_func(info_board)
+    return[player1,player2]
 
 #to chose number for proper cell
 def player_number(player):
@@ -108,8 +105,6 @@ def win(start_board,winner,player1,player2):
             exit()
 
 #### VARIABLES ####
-player1 = ''
-player2 = ''
 check_choise = True
 first_player_step = True
 winner = True
@@ -123,6 +118,10 @@ winner_board = (
 )
 
 #### LOGIC ####
+rules_func()
+info_board_func(info_board)
+player1 = input('could you please enter your name, one of you:  ')
+player2 = input('another one: ')
 while check_choise:
     players = who_is_first(player1,player2)
     if True:
