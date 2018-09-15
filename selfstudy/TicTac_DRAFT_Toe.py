@@ -2,9 +2,7 @@ from IPython.display import clear_output
 import os
 
 #### FUNCTIONS ####
-
-
-# to fix that board is shown after each step
+#just for printing rules when game starts
 def rules_func():
     print('Here is TicTacToe game\n' 
           'You can choose "X" or "O" to fil the table.\n'
@@ -12,17 +10,17 @@ def rules_func():
           'the vertical or horisontal lines in the table\n'
           'please enter numbers 1-9 according the positions\n'
           'in the board:')
-
+#printing board with numbers
 def info_board_func(info_board):
     display_board(info_board)
-
+#for displaying board
 def display_board(board):
     print('          ' + board[6]+ ' | ' +board[7]+ ' | ' +board[8] + ' ')
     print('         -----------')
     print('          ' + board[3]+ ' | ' +board[4]+ ' | ' +board[5] + ' ')
     print('         -----------')
     print('          ' + board[0]+ ' | ' +board[1]+ ' | ' +board[2] + ' ')
-
+#to choose X or O 
 def player_choice():
     choice = input('select X or O: ')
     clear_output()
@@ -36,7 +34,7 @@ def player_choice():
     else:
         print("you should choose only between X and O")
     return choice
-
+#to chose number for proper cell
 def player_number(order):
     while True:
         try:
@@ -52,7 +50,7 @@ def player_number(order):
             continue
         else:
             break
-    
+#player 1 step 
 def player_1(start_board):
     step = player_number('1')
     if step in range(1,10):
@@ -65,7 +63,7 @@ def player_1(start_board):
         print('Value is out of range 1 to 9')
         return False
     return start_board
-
+#player 2 step
 def player_2(start_board):
     step = player_number('2')
     if step in range(1,10):
@@ -78,9 +76,8 @@ def player_2(start_board):
         print('Value is out of range 1 to 9')
         return False
     return start_board
-
-# skip if no winner is possible
-
+#### skip if no winner is possible ####
+#define that someone wins
 def win(start_board,winner):
     check_board = [
         [start_board[0],start_board[1],start_board[2]],
@@ -141,9 +138,3 @@ while winner:
             first_player_step = True
             win(start_board,winner)
         break
-    
-
-
-# clear_output()
-# os.system('cls' if os.name == 'nt' else 'clear')
-# os.system('clear')
