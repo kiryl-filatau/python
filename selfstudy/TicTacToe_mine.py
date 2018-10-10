@@ -51,36 +51,24 @@ def player_number(player):
 #player 1 step 
 def player_1(start_board,player1):
     step = player_number(player1)
-    if step in range(1,10):
-        if start_board[step-1] == ' ':
-            start_board[step-1] = 'X'
-            display_board(start_board)
-        else:
-            os.system('clear')
-            print('This cell was already used')
-            display_board(start_board)
-            return False
+    if step in range(1,10) and start_board[step-1] == ' ':
+        start_board[step-1] = 'X'
+        display_board(start_board)
     else:
-        print('Value is out of range 1 to 9')
-        return False
+        os.system('clear')
+        print('Please enter number from 1 to 9 for the empty cell')
+        display_board(start_board)
     return start_board
 #player 2 step
 def player_2(start_board,player2):
     step = player_number(player2)
-    if step in range(1,10):
-        if start_board[step-1] == ' ':
-            start_board[step-1] = 'O'
-            display_board(start_board)
-        else:
-            os.system('clear')
-            print('This cell was already used')
-            display_board(start_board)
-            return False
+    if step in range(1,10) and start_board[step-1] == ' ':
+        start_board[step-1] = 'O'
+        display_board(start_board)
     else:
         os.system('clear')
-        print('Value is out of range 1 to 9')
+        print('Please enter number from 1 to 9 for the empty cell')
         display_board(start_board)
-        return False
     return start_board
 #### skip if no winner is possible ####
 #define that someone wins
@@ -95,13 +83,15 @@ def win(start_board,winner,player1,player2):
         # print(win_lines)
         if len(set(win_lines)) == 1 and win_lines[0] == 'X':
             print(f'The winner is {player1}')
+            winner = True
         elif len(set(win_lines)) == 1 and win_lines[0] == 'O':
             print(f'The winner is {player2}')
-    return False
+            winner = True
     for sets in winner_board:
         if ' ' not in start_board:
             print('The winner is friendship')
-    return False
+            winner = True
+    return winner
 
 def retry():
     global start_board
@@ -123,7 +113,8 @@ def retry():
 retry_game = True
 new_game = True
 first_player_step = True
-winner = True
+second_player_step = False
+winner = False
 start_board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
 info_board = ['1','2','3','4','5','6','7','8','9']
 winner_board = (
@@ -138,20 +129,30 @@ rules_func()
 info_board_func(info_board)
 player1 = input('could you please enter your name, one of you:  ')
 player2 = input('another one: ')
-while new_game:
-    players = who_is_first(player1,player2)
-    new_game = False
-    break
+while True:
+    while new_game:
+        players = who_is_first(player1,player2)
+        new_game = False
+        first_player_step = True
+        second_player_step = False
+        break
 
-while not new_game:
-    while first_player_step:
-        if player_1(start_board,players[0]):
+    while not new_game:
+        while first_player_step:
+            player_1(start_board,players[0])
             first_player_step = False
-        break
-    while not first_player_step:
-        if player_2(start_board,players[1]):
+            second_player_step = True
+            winner = win(start_board,winner,players[0],players[1])
+            if winner:
+                first_player_step = False
+                second_player_step = False
+                new_game = True
+        while second_player_step:
+            player_2(start_board,players[1])
             first_player_step = True
-        break
-    if not win(start_board,winner,players[0],players[1]):
-        new_game = True
-        retry()
+            second_player_step = False
+            winner = win(start_board,winner,players[0],players[1])
+            if winner:
+                first_player_step = False
+                second_player_step = False
+                new_game = True
