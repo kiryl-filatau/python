@@ -1,20 +1,20 @@
-x=abs(int(input('введите целое число: ')))
+# x=abs(int(input('введите целое число: ')))
 
-summ = 0
+# summ = 0
 
-if x == 0:
-    mult = 0
-else:
-    mult = 1
+# if x == 0:
+#     mult = 0
+# else:
+#     mult = 1
 
-while x > 0:
-    digit = x%10
-    summ += digit
-    mult *= digit
-    x = x//10
+# while x > 0:
+#     digit = x%10
+#     summ += digit
+#     mult *= digit
+#     x = x//10
 
-print('Сумма: ', summ)
-print('Произведение: ', mult)
+# print('Сумма: ', summ)
+# print('Произведение: ', mult)
 
 ##############################
 
